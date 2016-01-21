@@ -15,6 +15,21 @@ JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
+
+#Database  Tables
+
+class User_Details(ndb.Model):
+    """user table for storing user details"""
+    name = ndb.StringProperty(indexed=True)
+    emailid = ndb.StringProperty(indexed=True)
+
+class Coupon_Details(ndb.Model):
+    title=ndb.StringProperty(indexed=True)
+    category=ndb.StringProperty(indexed=True)
+    discount=ndb.StringProperty(indexed=True)
+    start_time=ndb.DateTimeProperty(auto_now_add=True)
+    end_time=ndb.DateTimeProperty(indexed=True)
+
 class homepage(webapp2.RequestHandler):
     """  handles rendering of index page """
     def get(self):
